@@ -11,11 +11,11 @@
 ![](https://img.shields.io/github/forks/llm-red-team/kimi-free-api.svg)
 ![](https://img.shields.io/docker/pulls/vinlic/kimi-free-api.svg)
 
-支持高速流式输出、支持多轮对话、支持联网搜索、支持智能体对话、支持长文档解读、支持图像OCR，零配置部署，多路token支持，自动清理会话痕迹。
+支持高速流式输出、支持多轮对话、支持联网搜索、支持智能体对话、支持探索版、支持K1思考模型、支持长文档解读、支持图像解析，零配置部署，多路token支持，自动清理会话痕迹。
 
 与ChatGPT接口完全兼容。
 
-还有以下八个free-api欢迎关注：
+还有以下十个free-api欢迎关注：
 
 阶跃星辰 (跃问StepChat) 接口转API [step-free-api](https://github.com/LLM-Red-Team/step-free-api)
 
@@ -25,13 +25,17 @@
 
 秘塔AI (Metaso) 接口转API [metaso-free-api](https://github.com/LLM-Red-Team/metaso-free-api)
 
+字节跳动（豆包）接口转API [doubao-free-api](https://github.com/LLM-Red-Team/doubao-free-api)
+
+字节跳动（即梦AI）接口转API [jimeng-free-api](https://github.com/LLM-Red-Team/jimeng-free-api)
+
 讯飞星火（Spark）接口转API [spark-free-api](https://github.com/LLM-Red-Team/spark-free-api)
 
 MiniMax（海螺AI）接口转API [hailuo-free-api](https://github.com/LLM-Red-Team/hailuo-free-api)
 
 深度求索（DeepSeek）接口转API [deepseek-free-api](https://github.com/LLM-Red-Team/deepseek-free-api)
 
-聆心智能 (Emohaa) 接口转API [emohaa-free-api](https://github.com/LLM-Red-Team/emohaa-free-api)
+聆心智能 (Emohaa) 接口转API [emohaa-free-api](https://github.com/LLM-Red-Team/emohaa-free-api)(当前不可用)
 
 ## 目录
 
@@ -42,9 +46,9 @@ MiniMax（海螺AI）接口转API [hailuo-free-api](https://github.com/LLM-Red-T
   * [多账号接入](#多账号接入)
 * [Docker部署](#Docker部署)
   * [Docker-compose部署](#Docker-compose部署)
-* [Render部署](#Render部署)
-* [Vercel部署](#Vercel部署)
-* [Zeabur部署](#Zeabur部署)
+  * [Render部署](#Render部署)
+  * [Vercel部署](#Vercel部署)
+  * [Zeabur部署](#Zeabur部署)
 * [原生部署](#原生部署)
 * [推荐使用客户端](#推荐使用客户端)
 * [接口列表](#接口列表)
@@ -129,7 +133,7 @@ https://udify.app/chat/Po0F6BMJ15q5vu2P
 
 ## Docker部署
 
-请准备一台具有公网IP的服务器并将8000端口开放。
+请准备能够部署Docker镜像且能够访问网络的设备或服务器，并将8000端口开放。
 
 拉取镜像并启动服务
 
@@ -279,7 +283,14 @@ Authorization: Bearer [refresh_token]
 请求数据：
 ```json
 {
-    // model随意填写，如果不希望输出检索过程模型名称请包含silent_search
+    // 模型名称
+    // kimi：默认模型
+    // kimi-search：联网检索模型
+    // kimi-research：探索版模型
+    // kimi-k1：K1模型
+    // kimi-math：数学模型
+    // kimi-silent：不输出检索过程模型
+    // search/research/k1/math/silent：可自由组合使用
     // 如果使用kimi+智能体，model请填写智能体ID，就是浏览器地址栏上尾部的一串英文+数字20个字符的ID
     "model": "kimi",
     // 目前多轮对话基于消息合并实现，某些场景可能导致能力下降且受单轮最大Token数限制
@@ -339,7 +350,15 @@ Authorization: Bearer [refresh_token]
 请求数据：
 ```json
 {
-    // 模型名称随意填写，如果不希望输出检索过程模型名称请包含silent_search
+    // 模型名称
+    // kimi：默认模型
+    // kimi-search：联网检索模型
+    // kimi-research：探索版模型
+    // kimi-k1：K1模型
+    // kimi-math：数学模型
+    // kimi-silent：不输出检索过程模型
+    // search/research/k1/math/silent：可自由组合使用
+    // 如果使用kimi+智能体，model请填写智能体ID，就是浏览器地址栏上尾部的一串英文+数字20个字符的ID
     "model": "kimi",
     "messages": [
         {
@@ -405,7 +424,15 @@ Authorization: Bearer [refresh_token]
 请求数据：
 ```json
 {
-    // 模型名称随意填写，如果不希望输出检索过程模型名称请包含silent_search
+    // 模型名称
+    // kimi：默认模型
+    // kimi-search：联网检索模型
+    // kimi-research：探索版模型
+    // kimi-k1：K1模型
+    // kimi-math：数学模型
+    // kimi-silent：不输出检索过程模型
+    // search/research/k1/math/silent：可自由组合使用
+    // 如果使用kimi+智能体，model请填写智能体ID，就是浏览器地址栏上尾部的一串英文+数字20个字符的ID
     "model": "kimi",
     "messages": [
         {
